@@ -42,7 +42,6 @@ jobs:
       - name: build, tag, and push multi-arch image to AWS ECR
         uses: docker/build-push-action@v5
         with:
-          context: .
           platforms: linux/amd64, linux/arm/v7, linux/arm64
           push: true
           tags: ${{ secrets.REGISTRY }}/${{ secrets.REPOSITORY }}:${{ github.sha }}
