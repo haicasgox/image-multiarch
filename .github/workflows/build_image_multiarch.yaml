@@ -19,11 +19,6 @@ jobs:
     #     - linux/amd64
     #     - linux/arm/v7
     #     - linux/arm64
-    env:
-      REGISTRY: ${{ secrets.REGISTRY }}
-      REGISTRY_ALIAS: ${{ secrets.ECR_PUBLIC_REPO_ALIAS }}
-      REPOSITORY: ${{ secrets.REPOSITORY }}
-      IMAGE_TAG: ${{ github.sha }}
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -50,5 +45,5 @@ jobs:
           context: .
           platforms: linux/amd64, linux/arm/v7, linux/arm64
           push: true
-          tags: $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          tags: ${{ secrets.REGISTRY }}/${{ secrets.REPOSITORY }}:${{ github.sha }}
 
